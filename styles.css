@@ -1,29 +1,31 @@
 body {
   background-color: #393e46;
   margin-top: 20px;
+  font-family: "Baloo 2", cursive;
 }
 h1 {
   color: #fd3a69;
   font-size: 100px;
   text-align: center;
+  font-weight: 600;
 }
 
 h2 {
   color: #ff7a00;
-  font-size: 50px;
+  font-size: 40px;
   text-align: center;
-  margin-top: 15px;
   text-transform: uppercase;
+  font-weight: 100;
 }
 h3 {
   color: #9ecca4;
-  font-size: 20px;
   text-align: center;
   text-transform: uppercase;
+  letter-spacing: 5px;
 }
 h5 {
   color: #ff7a00;
-  font-size: 160px;
+  font-size: 150px;
   text-align: center;
 }
 .background-card {
@@ -35,29 +37,28 @@ h5 {
   margin: 10px 25px 5px 12px;
 }
 #current-location {
-  margin-right: 22px;
+  margin-right: 20px;
 }
 .form-switch {
   margin-left: 26px;
+  margin-bottom: 20px;
 }
 .form-check-label {
   color: #8e7f7f;
 }
 .hours-minutes {
   color: #8e7f7f;
-  font-size: 15px;
+  font-size: 22px;
   text-align: center;
-  font-weight: 400;
+  margin-bottom: 0px;
 }
 .week-weather {
   color: #8e7f7f;
-  font-size: 14px;
   text-align: center;
-  font-weight: 400;
 }
 .week-icon {
   color: #fff;
-  font-size: 36px;
+  font-size: 30px;
   display: block;
   margin: 0 auto;
 }
