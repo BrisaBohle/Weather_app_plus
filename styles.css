@@ -1,0 +1,66 @@
+body {
+  background-color: #393e46;
+  margin-top: 20px;
+}
+h1 {
+  color: #fd3a69;
+  font-size: 100px;
+  text-align: center;
+}
+
+h2 {
+  color: #ff7a00;
+  font-size: 50px;
+  text-align: center;
+  margin-top: 15px;
+  text-transform: uppercase;
+}
+h3 {
+  color: #9ecca4;
+  font-size: 20px;
+  text-align: center;
+  text-transform: uppercase;
+}
+h5 {
+  color: #ff7a00;
+  font-size: 160px;
+  text-align: center;
+}
+.background-card {
+  width: 430px;
+  height: 700px;
+  background-image: linear-gradient(to top, #fff1eb 0%, #ace1f9 100%);
+}
+.search-engine {
+  margin: 10px 25px 5px 12px;
+}
+#current-location {
+  margin-right: 22px;
+}
+.form-switch {
+  margin-left: 26px;
+}
+.form-check-label {
+  color: #8e7f7f;
+}
+.hours-minutes {
+  color: #8e7f7f;
+  font-size: 15px;
+  text-align: center;
+  font-weight: 400;
+}
+.week-weather {
+  color: #8e7f7f;
+  font-size: 14px;
+  text-align: center;
+  font-weight: 400;
+}
+.week-icon {
+  color: #fff;
+  font-size: 36px;
+  display: block;
+  margin: 0 auto;
+}
+.week-prediction {
+  margin: 20px;
+}
