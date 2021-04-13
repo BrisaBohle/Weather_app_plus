@@ -43,6 +43,8 @@ function displayWeather(response) {
 function getForecast(coordinates){
   let key = "5f472b7acba333cd8a035ea85a0d4d4c";
   let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${key}&units=metric`;
+  window.axios.get(apiUrl).then(displayForecast);
+  
 }
 //Search City input//
 
@@ -108,29 +110,33 @@ currentButton.addEventListener("click", getLocationListner);
 let checkBox = document.querySelector("#flexSwitchCheckDefault");
 checkBox.addEventListener("change", swichUnitListner);
 
-searchCity("Oslo");
+//Forecast//
+function formatDay(timestamp){
+  let date = new Date(timestamp*1000);
+  let day = date.getDay();
+  let days = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
+  return days[day];
+}
 
-
-function displayForecast () {
+function displayForecast (response) {
 let forecastElement =document.querySelector("#forecast");
+let forecast = response.data.daily;
+console.log(response);
 let forecastHTML = `<div class="row">`;
-let days = ["SUN",
-  "MON",
-  "TUE",
-  "WED",
-  ];
-  days.forEach(function (day) {
-
+forecast.forEach(function (forecastDay, index) {
+if (index < 4){
 forecastHTML = forecastHTML + `
   <div class="col-3">
-  <div class="weather-forecast-date">${day}</div>
-  <img class="week-icon" src="http://openweathermap.org/img/wn/10d@2x.png" id="icon" />
+  <div class="weather-forecast-date">${formatDay(forecastDay.dt)}</div>
+  <img class="week-icon" src="http://openweathermap.org/img/wn/${forecastDay.weather[0].icon}@2x.png" id="icon" />
   <div class="weather-forecast-temperatures">
-    <span class="weather-forecast-temperature-min">0°</span>
-    <span class="weather-forecast-temperature-max">3°</span>
+    <span class="weather-forecast-temperature-min">${Math.round(forecastDay.temp.min)}°</span>
+    <span class="weather-forecast-temperature-max">${Math.round(forecastDay.temp.max)}°</span>
   </div>
-  </div>`;});
+  </div>`;}});
   forecastHTML = forecastHTML + `</div>`;
   forecastElement.innerHTML = forecastHTML;
+  
  }
-displayForecast ();
+
+searchCity("Oslo");
