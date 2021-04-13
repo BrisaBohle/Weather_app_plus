@@ -5,9 +5,10 @@ body {
 }
 h1 {
   color: #fd3a69;
-  font-size: 100px;
+  font-size: 90px;
   text-align: center;
   font-weight: 600;
+  margin: 0px;
 }
 
 h2 {
@@ -25,14 +26,15 @@ h3 {
   letter-spacing: 5px;
 }
 h5 {
-  color: #ff7a00;
-  font-size: 150px;
+  font-size: 90px;
   text-align: center;
+  margin-bottom: 35px;
 }
 small {
   color: #9ecca4;
   display: block;
   text-align: center;
+  margin-top: 20px;
 }
 a {
   color: #fd3a69;
@@ -59,7 +61,7 @@ a {
   color: #8e7f7f;
   font-size: 22px;
   text-align: center;
-  margin-bottom: 0px;
+  margin-bottom: 30px;
 }
 #forecast {
   color: #8e7f7f;

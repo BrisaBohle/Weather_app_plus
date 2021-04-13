@@ -121,7 +121,7 @@ function formatDay(timestamp){
 function displayForecast (response) {
 let forecastElement =document.querySelector("#forecast");
 let forecast = response.data.daily;
-console.log(response);
+
 let forecastHTML = `<div class="row">`;
 forecast.forEach(function (forecastDay, index) {
 if (index < 4){
@@ -130,8 +130,8 @@ forecastHTML = forecastHTML + `
   <div class="weather-forecast-date">${formatDay(forecastDay.dt)}</div>
   <img class="week-icon" src="http://openweathermap.org/img/wn/${forecastDay.weather[0].icon}@2x.png" id="icon" />
   <div class="weather-forecast-temperatures">
-    <span class="weather-forecast-temperature-min">${Math.round(forecastDay.temp.min)}°</span>
-    <span class="weather-forecast-temperature-max">${Math.round(forecastDay.temp.max)}°</span>
+    <span class="weather-forecast-temperature-min">${Math.round(forecastDay.temp.min)}°C</span>
+    <span class="weather-forecast-temperature-max">${Math.round(forecastDay.temp.max)}°C</span>
   </div>
   </div>`;}});
   forecastHTML = forecastHTML + `</div>`;
@@ -139,4 +139,4 @@ forecastHTML = forecastHTML + `
   
  }
 
-searchCity("Oslo");
+searchCity("São Paulo");
