@@ -27,19 +27,24 @@ if (minutes < 10) {
 let time = document.querySelector(".hours-minutes");
 time.innerHTML = `${hours}:${minutes}`;
 
-//Search input-City//
+//Display//
 
 function displayWeather(response) {
   document.querySelector("#city").innerHTML = response.data.name;
   setTemperature(response.data.main.temp);
+  getForecast(response.data.coord);
   let iconElement = document.querySelector("#icon");
   iconElement.setAttribute(
     "src",
     `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
   );
   iconElement.setAttribute("alt", response.data.weather[0].description);
-  console.log(iconElement);
+  }
+function getForecast(coordinates){
+  let key = "5f472b7acba333cd8a035ea85a0d4d4c";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${key}&units=metric`;
 }
+//Search City input//
 
 function searchCity(city) {
   let key = "5077d3232d041e2158e79942007bee5b";
@@ -104,3 +109,28 @@ let checkBox = document.querySelector("#flexSwitchCheckDefault");
 checkBox.addEventListener("change", swichUnitListner);
 
 searchCity("Oslo");
+
+
+function displayForecast () {
+let forecastElement =document.querySelector("#forecast");
+let forecastHTML = `<div class="row">`;
+let days = ["SUN",
+  "MON",
+  "TUE",
+  "WED",
+  ];
+  days.forEach(function (day) {
+
+forecastHTML = forecastHTML + `
+  <div class="col-3">
+  <div class="weather-forecast-date">${day}</div>
+  <img class="week-icon" src="http://openweathermap.org/img/wn/10d@2x.png" id="icon" />
+  <div class="weather-forecast-temperatures">
+    <span class="weather-forecast-temperature-min">0°</span>
+    <span class="weather-forecast-temperature-max">3°</span>
+  </div>
+  </div>`;});
+  forecastHTML = forecastHTML + `</div>`;
+  forecastElement.innerHTML = forecastHTML;
+ }
+displayForecast ();

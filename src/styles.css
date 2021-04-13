@@ -61,13 +61,15 @@ a {
   text-align: center;
   margin-bottom: 0px;
 }
-.week-weather {
+#forecast {
   color: #8e7f7f;
   text-align: center;
+  font-size: 13px;
+  display: block;
+  margin: 0 auto;
 }
 .week-icon {
-  color: #fff;
-  font-size: 30px;
+  width: 42px;
   display: block;
   margin: 0 auto;
 }
