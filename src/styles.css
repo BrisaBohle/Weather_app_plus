@@ -42,7 +42,7 @@ a {
 .background-card {
   width: 430px;
   height: 700px;
-  background-image: linear-gradient(to top, #fff1eb 0%, #ace1f9 100%);
+  background-image: linear-gradient(to top, #ff8d0038 0%, #ace1f9 100%);
 }
 .search-engine {
   margin: 10px 25px 5px 12px;

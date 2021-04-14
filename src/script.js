@@ -69,7 +69,8 @@ let unitSymbol = document.querySelector("#unit-shift");
 let celciusTemperature = Number(assignNumber.innerHTML);
 
 function setTemperature(celcius) {
-  let toFahrenheit = checkBox.checked;
+
+ let toFahrenheit = checkBox.checked;
   celcius = Math.round(celcius);
   if (toFahrenheit) {
     let fahrenheitTemp = Math.round((celcius * 9) / 5 + 32);
@@ -117,26 +118,31 @@ function formatDay(timestamp){
   let days = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
   return days[day];
 }
-
+let weekForecast = null;
 function displayForecast (response) {
 let forecastElement =document.querySelector("#forecast");
 let forecast = response.data.daily;
-
+let forecastMin = null;
+let forecastMax = null;
 let forecastHTML = `<div class="row">`;
 forecast.forEach(function (forecastDay, index) {
 if (index < 4){
+forecastMin = Math.round(forecastDay.temp.min);
+forecastMax = Math.round(forecastDay.temp.max);
 forecastHTML = forecastHTML + `
   <div class="col-3">
   <div class="weather-forecast-date">${formatDay(forecastDay.dt)}</div>
   <img class="week-icon" src="http://openweathermap.org/img/wn/${forecastDay.weather[0].icon}@2x.png" id="icon" />
   <div class="weather-forecast-temperatures">
-    <span class="weather-forecast-temperature-min">${Math.round(forecastDay.temp.min)}°C</span>
-    <span class="weather-forecast-temperature-max">${Math.round(forecastDay.temp.max)}°C</span>
+    <span class="weather-forecast-temperature-min" id= "week-degress">${forecastMin}</span><span id="unit-week">°C</span>
+    <span class="weather-forecast-temperature-max" id= "week-degress">${forecastMax}</span><span id="unit-week">°C</span>
   </div>
-  </div>`;}});
+  </div>`;
+  }});
   forecastHTML = forecastHTML + `</div>`;
   forecastElement.innerHTML = forecastHTML;
-  
- }
+let weekUnit = document.querySelectorAll("#unit-week");
+console.log (forecastMax, forecastMin, weekUnit);
+  }
 
 searchCity("São Paulo");
