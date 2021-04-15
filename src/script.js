@@ -84,6 +84,8 @@ function setTemperature(celcius) {
           forecastMax = Math.round(forecastDay.temp.max);
           let fahrenheitTempMin = Math.round((forecastMin * 9) / 5 + 32);
           let fahrenheitTempMax = Math.round((forecastMax * 9) / 5 + 32);
+          document.querySelector(`#unit-week-min-${index}`).innerHTML = `°F`;
+          document.querySelector(`#unit-week-max-${index}`).innerHTML = `°F`;
           document.querySelector("#week-degress-min-" + index).innerHTML = fahrenheitTempMin;
           document.querySelector("#week-degress-max-" + index).innerHTML = fahrenheitTempMax;
         }
@@ -98,6 +100,8 @@ function setTemperature(celcius) {
         if (index < 4){
           forecastMin = Math.round(forecastDay.temp.min);
           forecastMax = Math.round(forecastDay.temp.max);
+          document.querySelector(`#unit-week-min-${index}`).innerHTML = `°C`;
+          document.querySelector(`#unit-week-max-${index}`).innerHTML = `°C`;
           document.querySelector("#week-degress-min-" + index).innerHTML = forecastMin;
           document.querySelector("#week-degress-max-" + index).innerHTML = forecastMax;
         }
