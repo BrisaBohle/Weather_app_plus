@@ -76,11 +76,35 @@ function setTemperature(celcius) {
     let fahrenheitTemp = Math.round((celcius * 9) / 5 + 32);
     assignNumber.innerHTML = `${fahrenheitTemp}`;
     unitSymbol.innerHTML = `°F`;
+
+    if(forecast != null) {
+      forecast.forEach(function (forecastDay, index) {
+        if (index < 4){
+          forecastMin = Math.round(forecastDay.temp.min);
+          forecastMax = Math.round(forecastDay.temp.max);
+          let fahrenheitTempMin = Math.round((forecastMin * 9) / 5 + 32);
+          let fahrenheitTempMax = Math.round((forecastMax * 9) / 5 + 32);
+          document.querySelector("#week-degress-min-" + index).innerHTML = fahrenheitTempMin;
+          document.querySelector("#week-degress-max-" + index).innerHTML = fahrenheitTempMax;
+        }
+      });
+    }
+
   } else {
     assignNumber.innerHTML = `${celcius}`;
     unitSymbol.innerHTML = `°C`;
+    if(forecast != null) {
+      forecast.forEach(function (forecastDay, index) {
+        if (index < 4){
+          forecastMin = Math.round(forecastDay.temp.min);
+          forecastMax = Math.round(forecastDay.temp.max);
+          document.querySelector("#week-degress-min-" + index).innerHTML = forecastMin;
+          document.querySelector("#week-degress-max-" + index).innerHTML = forecastMax;
+        }
+      });
+    }
   }
-  celciusTemperature = celcius;
+  celciusTemperature = celcius; 
 }
 
 //Listner//
@@ -118,31 +142,33 @@ function formatDay(timestamp){
   let days = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
   return days[day];
 }
+let forecast = null;
 let weekForecast = null;
 function displayForecast (response) {
-let forecastElement =document.querySelector("#forecast");
-let forecast = response.data.daily;
-let forecastMin = null;
-let forecastMax = null;
-let forecastHTML = `<div class="row">`;
-forecast.forEach(function (forecastDay, index) {
-if (index < 4){
-forecastMin = Math.round(forecastDay.temp.min);
-forecastMax = Math.round(forecastDay.temp.max);
-forecastHTML = forecastHTML + `
-  <div class="col-3">
-  <div class="weather-forecast-date">${formatDay(forecastDay.dt)}</div>
-  <img class="week-icon" src="http://openweathermap.org/img/wn/${forecastDay.weather[0].icon}@2x.png" id="icon" />
-  <div class="weather-forecast-temperatures">
-    <span class="weather-forecast-temperature-min" id= "week-degress">${forecastMin}</span><span id="unit-week">°C</span>
-    <span class="weather-forecast-temperature-max" id= "week-degress">${forecastMax}</span><span id="unit-week">°C</span>
-  </div>
-  </div>`;
-  }});
+  let forecastElement =document.querySelector("#forecast");
+  forecast = response.data.daily;
+  let forecastMin = null;
+  let forecastMax = null;
+  let forecastHTML = `<div class="row">`;
+  forecast.forEach(function (forecastDay, index) {
+    if (index < 4){
+      forecastMin = Math.round(forecastDay.temp.min);
+      forecastMax = Math.round(forecastDay.temp.max);
+      forecastHTML = forecastHTML + `
+        <div class="col-3">
+        <div class="weather-forecast-date">${formatDay(forecastDay.dt)}</div>
+        <img class="week-icon" src="http://openweathermap.org/img/wn/${forecastDay.weather[0].icon}@2x.png" id="icon" />
+        <div class="weather-forecast-temperatures">
+          <span class="weather-forecast-temperature-min" id="week-degress-min-${index}">${forecastMin}</span><span id="unit-week-min-${index}">°C</span>
+          <span class="weather-forecast-temperature-max" id="week-degress-max-${index}">${forecastMax}</span><span id="unit-week-max-${index}">°C</span>
+        </div>
+        </div>`;
+    }
+  });
   forecastHTML = forecastHTML + `</div>`;
   forecastElement.innerHTML = forecastHTML;
-let weekUnit = document.querySelectorAll("#unit-week");
-console.log (forecastMax, forecastMin, weekUnit);
-  }
+  let weekUnit = document.querySelectorAll("#unit-week");
+  console.log (forecastMax, forecastMin, weekUnit);
+}
 
 searchCity("São Paulo");
