@@ -172,7 +172,7 @@ function displayForecast (response) {
   forecastHTML = forecastHTML + `</div>`;
   forecastElement.innerHTML = forecastHTML;
   let weekUnit = document.querySelectorAll("#unit-week");
-  console.log (forecastMax, forecastMin, weekUnit);
+ 
 }
 
 searchCity("São Paulo");
